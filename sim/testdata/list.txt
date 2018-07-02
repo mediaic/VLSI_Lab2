@@ -1,0 +1,16 @@
+1.png 2
+2.png 7
+3.png 0
+4.png 5
+5.png 3
+6.png 8
+7.png 9
+8.png 11
+9.png 31
+10.png 31
+11.png 7
+12.png 22
+13.png 23
+14.png 18
+15.png 13
+16.png 21

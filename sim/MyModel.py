@@ -5,6 +5,8 @@ test_name = "list.txt"
 W, H = 120, 80
 
 def LoadImages():
+	"Return an array whose columns are pixels and tags.\n"\
+	"Cannot be converted to an array."
 	ret = list()
 	with open(test_prefix + test_name) as fp:
 		for n, line in enumerate(fp.readlines()):
@@ -16,6 +18,9 @@ def LoadImages():
 	return ret
 
 def ComputeImages(imgs):
+	"Return an array whose columns are tag, average intensity,\n"\
+	"total pixel number, total intensity and type.\n"\
+	"#row = N"
 	ret = list()
 	for img, tag in imgs:
 		rg = img[:,:,0] >= img[:,:,1]
@@ -47,6 +52,7 @@ def ComputeImages(imgs):
 	return ret
 
 def SortFeatures(features):
+	"Return a sorted array whose columns are tag and type"\
 	features.sort()
 	return [(x[0], x[4]) for x in features]
 

@@ -52,7 +52,7 @@ def ComputeImages(imgs):
 	return ret
 
 def SortFeatures(features):
-	"Return a sorted array whose columns are tag and type"\
+	"Return a sorted array whose columns are tag and type"
 	features.sort()
 	return [(x[0], x[4]) for x in features]
 

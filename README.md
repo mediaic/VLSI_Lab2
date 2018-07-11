@@ -200,3 +200,5 @@ Reset 結束之後，Host 把 `pixel_valid` 變為 high 同時，送出第一筆
 * 請完成 part 1 的這兩個檔案，如果不能完成的話，今天可以使用 part 1 同學完成的檔案：
 	* `sim/Counter_test.py`
 	* `sim/Top_test.py`
+* Gate level 模擬需要將檔案放在 `syn/Top_syn.sv` 下，並執行：
+	* `make SYN=true top`

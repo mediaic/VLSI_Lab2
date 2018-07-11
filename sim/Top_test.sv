@@ -1,11 +1,19 @@
+`ifdef SYN
+`timescale 1ns/1ps
+`else
 `timescale 1ns/1ns
+`endif
 `include "Top.sv"
 
 module Top_test;
 
 logic clk, rst;
 `Pos(rst_out, rst)
+`ifdef SYN
 `PosIf(ck_ev, clk, rst)
+`else
+`PosIfDelayed(ck_ev, clk, rst, 0.1)
+`endif
 `WithFinish
 
 always #1 clk = ~clk;
@@ -22,6 +30,11 @@ initial begin
 	$finish;
 end
 
-Top dut(clk, rst);
+`ifdef SYN
+TopWrap
+`else
+Top
+`endif
+dut(clk, rst);
 
 endmodule

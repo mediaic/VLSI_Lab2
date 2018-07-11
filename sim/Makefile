@@ -1,6 +1,12 @@
 NICOTB=/opt/nicotb/lib
 IRUN=irun
-VFLAG=$(if $(USE_VERILOG),"+define+OLD_VERILOG_STYLE","")\
+ifdef SYN
+VFLAG="+define+OLD_VERILOG_STYLE +define+SYN"
+else
+ifdef USE_VERILOG
+VFLAG="+define+OLD_VERILOG_STYLE"
+endif
+endif
 
 top:
 	make COVERAGE=$(COV) ARGS="$(VFLAG)" Top
@@ -38,6 +44,7 @@ dump_scoreboard:
 	+nospecify +notimingchecks +delay_mode_unit \
 	+incdir+../design/ \
 	+incdir+../include/ \
+	+incdir+../syn/ \
 	$(if $(COVERAGE),-covoverwrite -coverage block -covtest $(TOP) -covdut $(TOP),) \
 	$(ARGS) $(NICOTB)/verilog/Utils.sv $<
 

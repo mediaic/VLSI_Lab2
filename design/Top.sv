@@ -1,13 +1,23 @@
 `include "define.sv"
-`ifdef OLD_VERILOG_SYNTAX
+`ifdef OLD_VERILOG_STYLE
+`ifdef SYN
+`include "Top_syn.v"
+`else
 `include "Top.v"
+`endif
 `else
 `include "Counter.sv"
 `include "Sorter.sv"
 `endif
 import MyDefine::*;
 
-module Top(
+module
+`ifdef SYN
+TopWrap
+`else
+Top
+`endif
+(
 	input  logic clk,
 	input  logic rst,
 	input  logic               pixel_valid,
@@ -21,7 +31,13 @@ module Top(
 	// TODO
 `ifdef OLD_VERILOG_SYNTAX
 	// If you are happier with this, alright
-	TopVerilog u_old_style_verilog_wrapper(
+`ifdef SYN
+	Top
+`else
+	TopVerilog
+`endif
+	TopVerilog
+	u_old_style_verilog_wrapper(
 		.clk(clk),
 		.rst(rst),
 		.pixel_valid(pixel_valid),

@@ -35,6 +35,7 @@ dump_scoreboard:
 	TOPMODULE=$(TOP) \
 	PYTHONPATH=$(NICOTB)/python:. \
 	$(IRUN) +access+rw -loadvpi $(NICOTB)/cpp/nicotb.so:VpiBoot \
+	+nospecify +notimingchecks +delay_mode_unit \
 	+incdir+../design/ \
 	+incdir+../include/ \
 	$(if $(COVERAGE),-covoverwrite -coverage block -covtest $(TOP) -covdut $(TOP),) \

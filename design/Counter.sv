@@ -1,5 +1,8 @@
 `include "define.sv"
 import MyDefine::*;
+`ifdef OLD_VERILOG_STYLE
+`include "Counter.v"
+`endif
 
 module Counter(
 	input  logic clk,

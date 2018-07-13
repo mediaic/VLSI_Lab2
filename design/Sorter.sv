@@ -1,5 +1,8 @@
 `include "define.sv"
 import MyDefine::*;
+`ifdef OLD_VERILOG_STYLE
+`include "Sorter.v"
+`endif
 
 module Sorter(
 	input  logic clk,

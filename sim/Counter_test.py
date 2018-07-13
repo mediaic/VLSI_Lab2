@@ -37,8 +37,8 @@ def main():
 	# TODO
 
 	# Check the data at slave.
-	# This create a tuple of two column vectors of size 16.
-	# The first one is o_tag, and the second one is o_type.
+	# This create a tuple of 5 column vectors of size 16.
+	# valid, tag, type, num, sum
 	# TODO
 
 	# Start simulation

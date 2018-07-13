@@ -1,4 +1,5 @@
 `include "define.sv"
+import MyDefine::*;
 `ifdef OLD_VERILOG_STYLE
 `ifdef SYN
 `include "Top_syn.v"
@@ -9,7 +10,6 @@
 `include "Counter.sv"
 `include "Sorter.sv"
 `endif
-import MyDefine::*;
 
 module
 `ifdef SYN

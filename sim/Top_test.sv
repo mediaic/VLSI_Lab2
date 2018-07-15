@@ -10,9 +10,9 @@ module Top_test;
 logic clk, rst;
 `Pos(rst_out, rst)
 `ifdef SYN
-`PosIf(ck_ev, clk, rst)
-`else
 `PosIfDelayed(ck_ev, clk, rst, 0.1)
+`else
+`PosIf(ck_ev, clk, rst)
 `endif
 `WithFinish
 

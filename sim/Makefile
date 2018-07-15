@@ -11,16 +11,13 @@ endif
 endif
 
 top:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" Rgb888ToYuv422
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" Top
 
-downsample:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" Downsample
+counter:
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" Counter
 
-coeff_col:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" CoeffCollect
-
-rgb2yuv:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" RgbToYuv
+sorter:
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" Sorter
 
 dump_scoreboard:
 	@echo -e \

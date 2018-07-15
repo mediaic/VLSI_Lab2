@@ -17,6 +17,22 @@ module Counter(
 	output logic [CL_IMG_SIZE-1:0] img_num, // #pixels
 	output logic [SUM_BIT    -1:0] img_sum // pixels sum
 );
+`ifdef OLD_VERILOG_STYLE
+	// If you are happier with this, alright
+	CounterVerilog u_old_style_verilog_wrapper(
+		.clk(clk),
+		.rst(rst),
+		.pixel_valid(pixel_valid),
+		.pixel_ready(pixel_ready),
+		.pixel_data({pixel_data[2], pixel_data[1], pixel_data[0]}),
+		.pixel_tag(pixel_tag),
+		.img_valid(img_valid),
+		.img_tag(img_tag),
+		.img_type(img_type),
+		.img_num(img_num),
+		.img_sum(img_sum)
+	);
+`else
 	// functional model !!!
 	integer pxsum [3];
 	integer pxcnt [3];
@@ -83,20 +99,5 @@ module Counter(
 			img_valid <= 0;
 		end
 	end
-`ifdef OLD_VERILOG_SYNTAX
-	// If you are happier with this, alright
-	CounterVerilog u_old_style_verilog_wrapper(
-		.clk(clk),
-		.rst(rst),
-		.pixel_valid(pixel_valid),
-		.pixel_ready(pixel_ready),
-		.pixel_data({pixel_data[2], pixel_data[1], pixel_data[0]}),
-		.pixel_tag(pixel_tag),
-		.img_valid(img_valid),
-		.img_tag(img_tag),
-		.img_type(img_type),
-		.img_num(img_num),
-		.img_sum(img_sum)
-	);
 `endif
 endmodule

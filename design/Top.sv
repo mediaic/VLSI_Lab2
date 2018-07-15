@@ -4,6 +4,8 @@ import MyDefine::*;
 `ifdef SYN
 `include "Top_syn.v"
 `else
+`include "Counter.v"
+`include "Sorter.v"
 `include "Top.v"
 `endif
 `else
@@ -28,25 +30,28 @@ Top
 	output logic [TYPE_BIT-1:0] o_type,
 	output logic [TAG_BIT -1:0] o_tag
 );
-	// TODO
-`ifdef OLD_VERILOG_SYNTAX
-	// If you are happier with this, alright
+`ifdef OLD_VERILOG_STYLE
 `ifdef SYN
 	Top
 `else
 	TopVerilog
 `endif
-	TopVerilog
 	u_old_style_verilog_wrapper(
 		.clk(clk),
 		.rst(rst),
 		.pixel_valid(pixel_valid),
 		.pixel_ready(pixel_ready),
+`ifdef SYN
+		.pixel_data({>>{pixel_data}}),
+`else
 		.pixel_data({pixel_data[2], pixel_data[1], pixel_data[0]}),
+`endif
 		.pixel_tag(pixel_tag),
 		.o_valid(o_valid),
 		.o_type(o_type),
 		.o_tag(o_tag)
 	);
+`else
+	// SystemVerilog version here
 `endif
 endmodule

@@ -16,6 +16,21 @@ module Sorter(
 	output logic [TAG_BIT -1:0] o_tag,
 	output logic [TYPE_BIT-1:0] o_type
 );
+`ifdef OLD_VERILOG_STYLE
+	// If you are happier with this, alright
+	SorterVerilog u_old_style_verilog_wrapper(
+		.clk(clk),
+		.rst(rst),
+		.img_valid(img_valid),
+		.img_tag(img_tag),
+		.img_type(img_type),
+		.img_num(img_num),
+		.img_sum(img_sum),
+		.o_valid(o_valid),
+		.o_tag(o_tag),
+		.o_type(o_type)
+	);
+`else
 	// functional model !!!
 	real avg[N_IMG];
 	bit [TAG_BIT -1:0] ta[N_IMG];
@@ -68,19 +83,5 @@ module Sorter(
 		end
 		o_valid <= 0;
 	end
-`ifdef OLD_VERILOG_SYNTAX
-	// If you are happier with this, alright
-	SorterVerilog u_old_style_verilog_wrapper(
-		.clk(clk),
-		.rst(rst),
-		.img_valid(img_valid),
-		.img_tag(img_tag),
-		.img_type(img_type),
-		.img_num(img_num),
-		.img_sum(img_sum),
-		.o_valid(o_valid),
-		.o_tag(o_tag),
-		.o_type(o_type)
-	);
 `endif
 endmodule

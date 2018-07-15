@@ -1,21 +1,26 @@
 NICOTB=/opt/nicotb/lib
+TSMC13DIR=/opt/CAD/cell_lib/CBDK_IC_Contest_v2.1
 IRUN=irun
 ifdef SYN
-VFLAG="+define+OLD_VERILOG_STYLE +define+SYN"
+VFLAG=+define+OLD_VERILOG_STYLE +define+SYN
+TSMC13=$(TSMC13DIR)/Verilog/tsmc13.v
 else
 ifdef USE_VERILOG
-VFLAG="+define+OLD_VERILOG_STYLE"
+VFLAG=+define+OLD_VERILOG_STYLE
 endif
 endif
 
 top:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" Top
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" Rgb888ToYuv422
 
-counter:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" Counter
+downsample:
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" Downsample
 
-sorter:
-	make COVERAGE=$(COV) ARGS="$(VFLAG)" Sorter
+coeff_col:
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" CoeffCollect
+
+rgb2yuv:
+	make COVERAGE=$(COV) ARGS="$(VFLAG)" RgbToYuv
 
 dump_scoreboard:
 	@echo -e \
@@ -46,7 +51,7 @@ dump_scoreboard:
 	+incdir+../include/ \
 	+incdir+../syn/ \
 	$(if $(COVERAGE),-covoverwrite -coverage block -covtest $(TOP) -covdut $(TOP),) \
-	$(ARGS) $(NICOTB)/verilog/Utils.sv $<
+	$(ARGS) $(NICOTB)/verilog/Utils.sv $(TSMC13) $<
 
 $(NICOTB)/cpp/nicotb.so:
 	make -C $(NICOTB)/cpp/

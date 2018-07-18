@@ -203,7 +203,7 @@ Reset 結束之後，Host 把 `pixel_valid` 變為 high 同時，送出第一筆
 * Gate level 模擬需要將檔案放在 `syn/Top_syn.sv` 下，並執行：
 	* `make SYN=true top`
 * APR 模擬需要：
-	* 將檔案*取代* `syn/Top_syn.sv`，或是改動 `design/Top.sv` 下 include 的路徑
+	* 將 APR 之後的 netlist 取代 `syn/Top_syn.v`，或是改動 `design/Top.sv` 下 `include "Top_syn.v"` 的路徑
 	* `sim/Top_test.sv` 加入 `$sdf_annotate("YOUR SDF", dut.u_old_style_verilog_wrapper);`
 	* Makefile no timing check 那行換成 `+ncmaxdelays`
 	* 執行 `make SYN=true top`

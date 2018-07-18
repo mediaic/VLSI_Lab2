@@ -31,14 +31,15 @@ def main():
 	# connect slave to the scoreboard.
 	# Choose to use OneWire or TwoWire accordingly.
 	# TODO
+	# NOTE: Construct your master with A=1, B=1 to send data in every cycle.
 
 	# Extract the data bus of master
 	# For creating the iterator (see Iter() below) easily.
 	# TODO
 
 	# Check the data at slave.
-	# This create a tuple of 5 column vectors of size 16.
-	# valid, tag, type, num, sum
+	# This create a tuple of four column vectors of size 16.
+	# tag, type, num, sum
 	# TODO
 
 	# Start simulation

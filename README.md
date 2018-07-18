@@ -184,7 +184,7 @@ Reset 結束之後，Host 把 `pixel_valid` 變為 high 同時，送出第一筆
 	* `make sorter`
 	* `make counter`
 * 如果你想使用 Verilog 語法，我們也提供了 script。
-	* `make USE_VERILOG=true top`
+	* `make top`
 	* `make USE_VERILOG=true sorter`
 	* `make USE_VERILOG=true counter`
 * 必須將完成之 ISE 電路通過 nLint 測試。
@@ -202,3 +202,8 @@ Reset 結束之後，Host 把 `pixel_valid` 變為 high 同時，送出第一筆
 	* `sim/Top_test.py`
 * Gate level 模擬需要將檔案放在 `syn/Top_syn.sv` 下，並執行：
 	* `make SYN=true top`
+* APR 模擬需要：
+	* 將檔案*取代* `syn/Top_syn.sv`，或是改動 `design/Top.sv` 下 include 的路徑
+	* `sim/Top_test.sv` 加入 `$sdf_annotate("YOUR SDF", dut.u_old_style_verilog_wrapper);`
+	* Makefile no timing check 那行換成 `+ncmaxdelays`
+	* 執行 `make SYN=true top`

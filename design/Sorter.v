@@ -1,5 +1,3 @@
-`include "define.sv"
-
 module SorterVerilog(
 	input  clk,
 	input  rst,

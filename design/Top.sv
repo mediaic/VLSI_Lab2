@@ -53,5 +53,35 @@ Top
 	);
 `else
 	// SystemVerilog version here
+	logic                   img_valid;
+	logic [TAG_BIT    -1:0] img_tag;
+	logic [TYPE_BIT   -1:0] img_type;
+	logic [CL_IMG_SIZE-1:0] img_num;
+	logic [SUM_BIT    -1:0] img_sum;
+	Counter u_counter(
+		.clk(clk),
+		.rst(rst),
+		.pixel_valid(pixel_valid),
+		.pixel_ready(pixel_ready),
+		.pixel_data(pixel_data),
+		.pixel_tag(pixel_tag),
+		.img_valid(img_valid),
+		.img_tag(img_tag),
+		.img_type(img_type),
+		.img_num(img_num),
+		.img_sum(img_sum)
+	);
+	Sorter u_sorter(
+		.clk(clk),
+		.rst(rst),
+		.img_valid(img_valid),
+		.img_tag(img_tag),
+		.img_type(img_type),
+		.img_num(img_num),
+		.img_sum(img_sum),
+		.o_valid(o_valid),
+		.o_tag(o_tag),
+		.o_type(o_type)
+	);
 `endif
 endmodule

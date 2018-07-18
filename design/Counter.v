@@ -1,5 +1,3 @@
-`include "define.sv"
-
 module CounterVerilog(
 	input  clk,
 	input  rst,
